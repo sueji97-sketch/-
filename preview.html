@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이수경의 포트폴리오 | 유치원 교사</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>" />
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React 18 & ReactDOM & Babel for standalone browser preview -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#1E3A2F',
+              primary: '#3F6152',
+              sage: '#5F8575',
+              light: '#EBF3EE',
+              cream: '#FAF7F2',
+              peach: '#F4EAE0',
+              coral: '#E76F51',
+              sand: '#D4C5B9'
+            }
+          },
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background-color: #FAF7F2;
+      color: #2D3748;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #F1EFEA; }
+    ::-webkit-scrollbar-thumb { background: #A3B899; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #667B68; }
+    .glass-nav {
+      background: rgba(250, 247, 242, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-[#FAF7F2] text-gray-800 antialiased selection:bg-brand-sage selection:text-white">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const projectsData = [
+      {
+        id: 1,
+        title: "사계절 오감 생태 놀이 중심 교육과정 기획 및 운영",
+        category: "누리과정 / 자연생태체험",
+        period: "2025.03 ~ 2025.11 (9개월)",
+        imageFilename: "project-01.jpg",
+        imagePath: "./public/images/projects/project-01.jpg",
+        summary: "원내 텃밭과 숲 놀이터를 활용하여 사계절의 순환을 오감으로 경험하는 4단계 생태 프로젝트를 기획하고 연간 교육과정으로 안착시켰습니다.",
+        tags: ["누리과정", "생태체험", "연간계획안", "숲놀이"],
+        details: {
+          background: "자연과 교감할 기회가 적은 도심 유아들을 위해 오감으로 계절을 체험할 수 있는 자연 친화적 교육과정이 필요했습니다.",
+          goals: "사계절의 변화 관찰, 생명 존중 의식 함양, 신체 발달 및 정서적 안정감 형성",
+          role: "연간 생태 교육계획안 수립, 텃밭 식재 계획 및 관리, 부모 연계 숲 체험의 날 기획·진행",
+          skills: ["한글 (HWP) - 연간/월간 교육계획안 12종 작성", "파워포인트 (PPT) - 생태활동 사진집 및 브리핑"],
+          outcomes: "유아들의 정서 안정 지표 및 편식 개선률 45% 향상, 원내 학부모 만족도 98% 달성",
+          reflection: "직접 흙을 만지고 작물을 키우며 아이들의 생명 존중 태도가 눈에 띄게 자라나는 것을 보며 생태 교육의 가치를 깊이 체감했습니다."
+        }
+      },
+      {
+        id: 2,
+        title: "마음 톡톡! 감정 그림책 놀이 및 공감 언어 지도",
+        category: "인성 교육 / 사회관계 영역",
+        period: "2024.04 ~ 2024.07 (4개월)",
+        imageFilename: "project-02.jpg",
+        imagePath: "./public/images/projects/project-02.jpg",
+        summary: "유아기 또래 관계 갈등을 예방하고 긍정적 자기표현을 돕기 위해 20권의 감정 그림책을 연계한 역할극 및 미술 치유 프로그램을 설계했습니다.",
+        tags: ["인성교육", "그림책놀이", "감정코칭", "또래관계"],
+        details: {
+          background: "새 학기 적응 과정에서 나타나는 감정 조절의 어려움과 또래 간 신체적 갈등을 건강하게 해소하고자 기획했습니다.",
+          goals: "자신의 감정 명명하기, 상대방 감정 공감하기, 비폭력 대화법 습관화",
+          role: "감정 그림책 큐레이션, 감정 카드 교구 자체 제작, 일일 마음 나눔 서클 운영",
+          skills: ["펠트 DIY 교구 제작", "한글 (HWP) - 감정 관찰 기록지 서식 개발"],
+          outcomes: "학급 내 언어 및 신체 갈등 발생 건수 전학기 대비 60% 감소, 자기표현력 신장",
+          reflection: "아이들의 서툰 표현 뒤에 숨은 감정을 읽어주는 교사의 공감 능력이 학급 분위기를 어떻게 바꾸는지 체득했습니다."
+        }
+      },
+      {
+        id: 3,
+        title: "가정 연계 열린 어린이집 & 부모 참여 수업 기획",
+        category: "학부모 소통 / 열린 어린이집",
+        period: "2024.09 ~ 2024.10 (2개월)",
+        imageFilename: "project-03.jpg",
+        imagePath: "./public/images/projects/project-03.jpg",
+        summary: "가정과 원의 긴밀한 신뢰 형성을 위해 '우리 가족 오감 캠프' 콘셉트의 부모 참여 수업을 총괄 기획하고 프레젠테이션을 성공적으로 이끌었습니다.",
+        tags: ["학부모소통", "참여수업", "PPT발표", "열린어린이집"],
+        details: {
+          background: "단순 일방향 참관이 아닌, 부모와 유아가 한 팀이 되어 상호작용할 수 있는 체험형 열린 수업을 목표로 추진했습니다.",
+          goals: "가정-기관 간 교육적 일관성 확보, 학부모의 원 운영 이해도 제고 및 신뢰 증진",
+          role: "수업 총괄 기획, 시나리오 및 안내문 작성, 오리엔테이션 PPT 발표 진행",
+          skills: ["파워포인트 (PPT) - 고품질 학부모 안내 브리핑 자료 제작", "한글 (HWP) - 가정통신문 및 행사 운영안"],
+          outcomes: "전체 학부모 참여율 96% 달성, 열린 어린이집 우수 프로그램 선정",
+          reflection: "학부모와의 진정성 있는 소통과 전문성 있는 자료 준비가 원에 대한 깊은 신뢰로 이어진다는 것을 확인했습니다."
+        }
+      },
+      {
+        id: 4,
+        title: "유아 주도형 안전 지킴이 및 재난 대응 시뮬레이션",
+        category: "안전 교육 / 원내 생활 지도",
+        period: "2023.05 ~ 2023.08 (4개월)",
+        imageFilename: "project-04.jpg",
+        imagePath: "./public/images/projects/project-04.jpg",
+        summary: "주입식 대피 훈련을 탈피하여 유아들이 '어린이 소방대원'이 되어 실전처럼 대피 수칙을 체득하는 놀이형 소방·지진 안전 훈련 매뉴얼을 구축했습니다.",
+        tags: ["생활안전", "소방대피", "안전매뉴얼", "놀이안전"],
+        details: {
+          background: "재난 상황 시 유아들이 당황하지 않고 즉각적으로 스스로를 보호할 수 있는 체화된 안전 훈련이 필요했습니다.",
+          goals: "화재·지진 시 안전 대피 요령 습득, 미세먼지 및 감염병 예방 생활 습관화",
+          role: "원내 재난 대피 맵 제작, 시청각 교육 자료 구성, 소방서 연계 합동 소방 훈련 주도",
+          skills: ["파워포인트 (PPT) - 유아 눈높이 안전 애니메이션 슬라이드", "한글 (HWP) - 안전 점검 체크리스트"],
+          outcomes: "전원 대피 완료 시간 3분 40초에서 1분 50초로 50% 단축, 안전 지표 A등급 획득",
+          reflection: "유아 스스로 규칙을 지키고 동생들을 이끌어주는 책임감 있는 모습을 통해 아이들의 잠재력을 신뢰하게 되었습니다."
+        }
+      },
+      {
+        id: 5,
+        title: "누리과정 기반 유아 관찰일지 및 발달 평가 표준화",
+        category: "학급 행정 / 평가 인증",
+        period: "2023.09 ~ 2024.02 (6개월)",
+        imageFilename: "project-05.jpg",
+        imagePath: "./public/images/projects/project-05.jpg",
+        summary: "원장 자격 연수에서 습득한 행정 체계를 바탕으로, 누리과정 5대 영역별 유아 관찰 서식을 표준화하여 교사진의 행정 업무 효율을 40% 개선했습니다.",
+        tags: ["원장자격", "행정표준화", "누리과정평가", "한글서식"],
+        details: {
+          background: "교사마다 상이한 관찰 기록 양식으로 인해 평가 인증 준비 시 과도한 행정 부담이 발생하는 문제를 해결하고자 했습니다.",
+          goals: "누리과정 5대 영역(신체운동·건강, 의사소통, 사회관계, 예술경험, 자연탐구)의 체계적 기록 표준화",
+          role: "관찰일지 템플릿 제작, 평가 인증 지표 가이드 배포, 동료 교사 서식 활용 멘토링",
+          skills: ["한글 (HWP) - 표/매크로를 활용한 규격화된 관찰일지 서식 개발", "파워포인트 (PPT) - 교사 교육용 매뉴얼"],
+          outcomes: "어린이집 평가 인증 통합 지표 All Pass 통과, 교사 일지 작성 시간 40% 단축",
+          reflection: "체계화된 행정 시스템이 교사에게는 아이들에게 집중할 시간을, 학부모에게는 객관적인 성장 피드백을 제공한다는 것을 배웠습니다."
+        }
+      }
+    ];
+
+    function Header() {
+      const [scrolled, setScrolled] = useState(false);
+      useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 40);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      return (
+        <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'glass-nav shadow-sm py-3' : 'bg-transparent py-5'}`}>
+          <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <a href="#intro" className="flex items-center gap-2 group">
+              <span className="w-8 h-8 rounded-full bg-brand-primary text-white flex items-center justify-center text-sm font-bold shadow-md group-hover:scale-105 transition-transform">
+                이
+              </span>
+              <span className="font-bold text-lg text-brand-dark tracking-tight">
+                이수경 <span className="text-xs font-normal text-brand-sage ml-1">유치원 교사 포트폴리오</span>
+              </span>
+            </a>
+
+            <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+              <a href="#intro" className="hover:text-brand-primary transition-colors">Intro</a>
+              <a href="#profile" className="hover:text-brand-primary transition-colors">Profile</a>
+              <a href="#project" className="hover:text-brand-primary transition-colors">Project</a>
+              <a href="#hobby" className="hover:text-brand-primary transition-colors">Hobby</a>
+              <a href="#sitemap" className="hover:text-brand-primary transition-colors">Sitemap</a>
+            </nav>
+
+            <a
+              href="./public/assets/resume_leesoogyeong.pdf"
+              download
+              className="text-xs md:text-sm font-semibold bg-brand-primary hover:bg-brand-dark text-white px-4 py-2 rounded-full transition-all shadow-sm hover:shadow"
+            >
+              이력서 PDF 📥
+            </a>
+          </div>
+        </header>
+      );
+    }
+
+    function Intro() {
+      return (
+        <section id="intro" className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#F5ECE1] via-[#FAF7F2] to-[#FAF7F2]">
+          <div className="absolute inset-0 w-full h-full z-0">
+            <iframe
+              src="https://my.spline.design/genkubgreetingrobot-CNSvvtA3TEkOLF28w8pjOKnX/"
+              frameBorder="0"
+              width="100%"
+              height="100%"
+              title="Spline 3D Greeting Robot"
+              className="w-full h-full pointer-events-auto"
+            ></iframe>
+          </div>
+
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FAF7F2] via-transparent to-transparent pointer-events-none z-10"></div>
+
+          <div className="relative z-20 text-center px-6 pointer-events-none mt-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-brand-sage/20 text-brand-primary text-xs md:text-sm font-semibold mb-6">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+              아이들의 미래를 가꾸는 교사
+            </div>
+            
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-brand-dark tracking-tight mb-4 drop-shadow-sm">
+              이수경의 포트폴리오
+            </h1>
+            
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
+              따뜻한 눈높이 공감과 원장 자격의 전문적인 학급 경영 역량으로<br className="hidden sm:inline" />
+              아이들이 매일 오고 싶은 행복한 유치원을 만듭니다.
+            </p>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-3 text-xs md:text-sm font-semibold text-brand-dark pointer-events-auto">
+              <span className="bg-white/90 backdrop-blur px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+                🌱 보육교사 1급
+              </span>
+              <span className="bg-white/90 backdrop-blur px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+                🏅 어린이집 원장 자격
+              </span>
+              <span className="bg-white/90 backdrop-blur px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+                💻 PPT & HWP 실무 최상
+              </span>
+            </div>
+          </div>
+
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-auto">
+            <a href="#profile" className="flex flex-col items-center text-xs font-semibold text-brand-primary/80 hover:text-brand-dark transition-colors">
+              <span>스크롤하여 프로필 보기</span>
+              <span className="text-lg animate-bounce mt-1">↓</span>
+            </a>
+          </div>
+        </section>
+      );
+    }
+
+    function Profile() {
+      return (
+        <section id="profile" className="py-24 px-6 max-w-7xl mx-auto">
+          <div className="mb-16">
+            <span className="text-xs font-bold tracking-widest text-brand-sage uppercase">
+              01. Profile & Qualifications
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black text-brand-dark mt-2 tracking-tight">
+              교사 이수경을 소개합니다
+            </h2>
+            <p className="text-gray-600 mt-3 text-base md:text-lg max-w-2xl">
+              인사 담당자님께서 가장 궁금해하시는 핵심 역량과 자격, 실무 능력을 투명하고 명확하게 정리했습니다.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left: Info Card (5 cols) */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="bg-white rounded-3xl p-8 shadow-sm border border-brand-sage/10 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-light rounded-bl-full -z-0 opacity-60"></div>
+                <div className="relative z-10">
+                  <div className="inline-block px-3 py-1 rounded-full bg-brand-light text-brand-primary text-xs font-bold mb-4">
+                    유치원 교사 / 보육교사
+                  </div>
+                  <h3 className="text-3xl font-extrabold text-brand-dark">이수경</h3>
+                  <p className="text-sm font-medium text-gray-500 mt-1">1997년 3월 28일생 (만 27세)</p>
+                  <div className="border-t border-gray-100 my-6"></div>
+
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">교사 철학 및 소개</h4>
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      “아이들의 눈높이에서 경청하는 따뜻함과, 원장 자격 취득으로 다져진 체계적인 학급 운영 관리력을 겸비한 교사입니다.”
+                    </p>
+                    <div className="space-y-2.5 pt-2">
+                      <div className="flex items-center gap-3 text-sm text-gray-700">
+                        <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">✓</span>
+                        <span><strong>안전 제일주의:</strong> 작은 위험 요인도 선제적으로 예방하는 꼼꼼함</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm text-gray-700">
+                        <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">✓</span>
+                        <span><strong>열린 소통:</strong> 학부모가 안심할 수 있는 정기적·투명한 피드백</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm text-gray-700">
+                        <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">✓</span>
+                        <span><strong>놀이 중심:</strong> 2019 개정 누리과정에 맞춘 유아 주도적 배움 설계</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-brand-cream border border-brand-sand/30 rounded-2xl p-5 text-center">
+                  <span className="text-2xl md:text-3xl font-black text-brand-dark">1급</span>
+                  <p className="text-xs font-semibold text-gray-600 mt-1">보육교사 최고 등급 자격</p>
+                </div>
+                <div className="bg-brand-cream border border-brand-sand/30 rounded-2xl p-5 text-center">
+                  <span className="text-2xl md:text-3xl font-black text-brand-coral">원장 자격</span>
+                  <p className="text-xs font-semibold text-gray-600 mt-1">어린이집 원장 자격 보유</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Certs & Skills (7 cols) */}
+            <div className="lg:col-span-7 space-y-8">
+              {/* 자격증 */}
+              <div className="bg-white rounded-3xl p-8 shadow-sm border border-brand-sage/10">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-brand-sage">Certifications</span>
+                    <h4 className="text-xl font-bold text-brand-dark mt-0.5">보유 자격증</h4>
+                  </div>
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-semibold">
+                    공인 국가전문자격
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="p-5 rounded-2xl bg-[#F8FBF9] border border-emerald-100 hover:border-emerald-300 transition-all">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg font-bold shadow-sm">
+                        📜
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-brand-dark text-base">보육교사 1급 자격증</h5>
+                        <p className="text-xs text-gray-500">보건복지부 발행</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      풍부한 보육 실무 경험과 법정 승급 연수를 통해 취득한 보육교사 최상위 등급 자격입니다.
+                    </p>
+                    <div className="mt-4 pt-3 border-t border-emerald-100 flex items-center justify-between text-xs text-emerald-700 font-semibold">
+                      <span>현장 실무 및 담임 역량</span>
+                      <span className="text-emerald-500">Verified ✓</span>
+                    </div>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-[#FCF8F5] border border-orange-100 hover:border-orange-300 transition-all">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-brand-coral text-white flex items-center justify-center text-lg font-bold shadow-sm">
+                        🏅
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-brand-dark text-base">어린이집 원장 자격증</h5>
+                        <p className="text-xs text-gray-500">보건복지부 공인</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      원 운영 관리, 보육 행정, 재무 회계, 교직원 인사 관리 및 법적 평가 인증 전반을 아우르는 관리자 자격입니다.
+                    </p>
+                    <div className="mt-4 pt-3 border-t border-orange-100 flex items-center justify-between text-xs text-brand-coral font-semibold">
+                      <span>기관 관리 및 평가인증 마스터</span>
+                      <span className="text-orange-500">Verified ✓</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Skills (한글 & 파워포인트) */}
+              <div className="bg-white rounded-3xl p-8 shadow-sm border border-brand-sage/10">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-brand-sage">Practical Skills</span>
+                    <h4 className="text-xl font-bold text-brand-dark mt-0.5">실무 오피스 스킬</h4>
+                  </div>
+                  <span className="text-xs text-gray-400 font-medium">유치원·어린이집 실무 기준</span>
+                </div>
+
+                <div className="space-y-6">
+                  {/* 한글 */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <span className="w-7 h-7 rounded-lg bg-blue-500 text-white flex items-center justify-center text-xs font-bold">한</span>
+                        <span className="font-bold text-brand-dark text-sm md:text-base">한글 (HWP)</span>
+                        <span className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">최상 (Expert)</span>
+                      </div>
+                      <span className="text-sm font-extrabold text-blue-600">98%</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                      <div className="bg-blue-500 h-2.5 rounded-full" style={{ width: '98%' }}></div>
+                    </div>
+                    <p className="text-xs text-gray-500 leading-relaxed pt-1">
+                      • 연간/월간/주간/일일 교육계획안 작성 능숙<br />
+                      • 관찰일지, 발달평가서, 운영일지, 행정 공문서 및 가정통신문 빠른 타이핑 및 표준 서식화
+                    </p>
+                  </div>
+
+                  {/* 파워포인트 */}
+                  <div className="space-y-2 pt-2 border-t border-gray-100">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <span className="w-7 h-7 rounded-lg bg-orange-500 text-white flex items-center justify-center text-xs font-bold">P</span>
+                        <span className="font-bold text-brand-dark text-sm md:text-base">파워포인트 (PPT)</span>
+                        <span className="text-xs bg-orange-50 text-orange-700 px-2 py-0.5 rounded font-semibold">상 (Advanced)</span>
+                      </div>
+                      <span className="text-sm font-extrabold text-orange-600">95%</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                      <div className="bg-orange-500 h-2.5 rounded-full" style={{ width: '95%' }}></div>
+                    </div>
+                    <p className="text-xs text-gray-500 leading-relaxed pt-1">
+                      • 유아 시각 집중을 돕는 애니메이션 및 멀티미디어 이야기 나누기 수업 자료 제작<br />
+                      • 신입생 입학설명회 및 학부모 오리엔테이션용 고품질 프레젠테이션 디자인
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function SkeletonCard() {
+      return (
+        <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm animate-pulse flex flex-col md:flex-row min-h-[220px]">
+          <div className="w-full md:w-2/5 min-h-[200px] bg-gray-200"></div>
+          <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-between space-y-4">
+            <div>
+              <div className="flex gap-2 mb-3">
+                <div className="h-5 bg-gray-200 rounded-full w-24"></div>
+                <div className="h-5 bg-gray-200 rounded-full w-32"></div>
+              </div>
+              <div className="h-7 bg-gray-200 rounded-lg w-3/4 mb-3"></div>
+              <div className="space-y-2">
+                <div className="h-4 bg-gray-200 rounded w-full"></div>
+                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              </div>
+            </div>
+            <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+              <div className="flex gap-2">
+                <div className="h-6 bg-gray-200 rounded-md w-16"></div>
+                <div className="h-6 bg-gray-200 rounded-md w-16"></div>
+              </div>
+              <div className="h-8 bg-gray-200 rounded-full w-24"></div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function ProjectCard({ project, onSelect }) {
+      return (
+        <div
+          onClick={() => onSelect(project)}
+          className="group bg-white rounded-3xl overflow-hidden border border-brand-sage/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row cursor-pointer hover:-translate-y-1"
+        >
+          {/* Left: Preview Image Placeholder with Filename */}
+          <div className="w-full md:w-2/5 min-h-[220px] md:min-h-[260px] bg-[#F2EFE9] relative flex items-center justify-center overflow-hidden border-b md:border-b-0 md:border-r border-gray-100">
+            <div className="flex flex-col items-center justify-center p-6 text-center">
+              <div className="w-12 h-12 rounded-2xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-3">
+                <span className="text-xl">🖼️</span>
+              </div>
+              {/* 이미지 위 파일명 표기 */}
+              <div className="bg-brand-dark/90 text-white text-xs font-mono font-semibold px-3 py-1.5 rounded-lg shadow-sm border border-white/20">
+                📁 {project.imageFilename}
+              </div>
+              <span className="text-[11px] text-gray-500 mt-2 font-medium">
+                (public/images/projects/{project.imageFilename})
+              </span>
+            </div>
+            <span className="absolute top-4 left-4 w-7 h-7 rounded-full bg-white/90 backdrop-blur text-brand-dark font-extrabold text-xs flex items-center justify-center shadow-sm">
+              0{project.id}
+            </span>
+          </div>
+
+          {/* Right: Content Information Area */}
+          <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-between">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <span className="text-xs font-bold text-brand-sage bg-brand-light px-2.5 py-1 rounded-full">
+                  {project.category}
+                </span>
+                <span className="text-xs text-gray-600 font-medium">
+                  🗓️ {project.period}
+                </span>
+              </div>
+
+              <h3 className="text-xl md:text-2xl font-bold text-brand-dark group-hover:text-brand-primary transition-colors mt-2">
+                {project.title}
+              </h3>
+
+              <p className="text-gray-600 text-sm md:text-base mt-3 leading-relaxed">
+                {project.summary}
+              </p>
+            </div>
+
+            <div className="pt-6 mt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap gap-1.5">
+                {project.tags.map((tag, idx) => (
+                  <span key={idx} className="text-xs bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded-md font-medium">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+
+              <button className="inline-flex items-center gap-1 text-xs md:text-sm font-bold text-brand-primary group-hover:text-brand-dark transition-colors">
+                상세 보기 →
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function ProjectModal({ project, onClose }) {
+      if (!project) return null;
+      return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
+          <div className="fixed inset-0 bg-brand-dark/60 backdrop-blur-sm" onClick={onClose}></div>
+          <div className="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto z-10 border border-gray-100 flex flex-col">
+            <div className="sticky top-0 bg-white/95 backdrop-blur px-6 sm:px-8 py-5 border-b border-gray-100 flex items-center justify-between z-20">
+              <div>
+                <span className="text-xs font-bold text-brand-sage uppercase">Project Details</span>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-brand-dark">{project.title}</h3>
+              </div>
+              <button onClick={onClose} className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 flex items-center justify-center">✕</button>
+            </div>
+
+            <div className="p-6 sm:p-8 space-y-6">
+              <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-brand-light/60 border border-brand-sage/20 text-xs sm:text-sm">
+                <span className="font-semibold text-brand-dark">🏷️ 분야: <strong className="text-brand-primary">{project.category}</strong></span>
+                <span className="font-medium text-gray-600">🗓️ 기간: {project.period}</span>
+                <span className="font-mono bg-white px-2.5 py-1 rounded-md border text-brand-sage text-xs">📁 {project.imageFilename}</span>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">프로젝트 개요</h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-medium bg-gray-50 p-4 rounded-xl border border-gray-100">{project.summary}</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-5 rounded-2xl border border-gray-100 bg-white">
+                  <h5 className="font-bold text-brand-dark text-sm mb-1.5 flex items-center gap-2">🎯 교육 목표</h5>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{project.details.goals}</p>
+                </div>
+                <div className="p-5 rounded-2xl border border-gray-100 bg-white">
+                  <h5 className="font-bold text-brand-dark text-sm mb-1.5 flex items-center gap-2">👩‍🏫 교사 역할</h5>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{project.details.role}</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl border border-brand-sage/20 bg-[#F7FAF8]">
+                <h5 className="font-bold text-brand-dark text-sm mb-2 flex items-center gap-2">💻 활용 스킬 및 오피스 역량</h5>
+                <div className="flex flex-wrap gap-2">
+                  {project.details.skills.map((skill, idx) => (
+                    <span key={idx} className="text-xs bg-white text-brand-dark px-3 py-1.5 rounded-lg border border-brand-sage/20 font-semibold">{skill}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-amber-50/60 border border-amber-200/60">
+                <h5 className="font-bold text-amber-900 text-sm mb-1.5 flex items-center gap-2">🏆 주요 성과 및 평가</h5>
+                <p className="text-xs sm:text-sm text-amber-800 font-medium leading-relaxed">{project.details.outcomes}</p>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">교사로서의 배움과 회고</h4>
+                <blockquote className="italic text-xs sm:text-sm text-gray-600 border-l-4 border-brand-primary pl-4 py-1">
+                  "{project.details.reflection}"
+                </blockquote>
+              </div>
+            </div>
+
+            <div className="sticky bottom-0 bg-white/95 backdrop-blur px-6 sm:px-8 py-4 border-t border-gray-100 flex justify-end">
+              <button onClick={onClose} className="px-6 py-2 rounded-full bg-brand-primary text-white text-sm font-semibold hover:bg-brand-dark">닫기</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function ProjectList() {
+      const [projects, setProjects] = useState([]);
+      const [loading, setLoading] = useState(true);
+      const [selectedProject, setSelectedProject] = useState(null);
+
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setProjects(projectsData);
+          setLoading(false);
+        }, 700);
+        return () => clearTimeout(timer);
+      }, []);
+
+      return (
+        <section id="project" className="py-24 px-6 max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <span className="text-xs font-bold tracking-widest text-brand-sage uppercase">
+                02. Key Projects
+              </span>
+              <h2 className="text-3xl md:text-5xl font-black text-brand-dark mt-2 tracking-tight">
+                교육 및 학급 운영 프로젝트
+              </h2>
+              <p className="text-gray-600 mt-3 text-base md:text-lg max-w-2xl">
+                놀이 중심 누리과정, 학부모 연계, 안전 교육 및 행정 표준화에 이르는 5대 핵심 프로젝트입니다.
+              </p>
+            </div>
+
+            <div className="mt-4 md:mt-0 flex items-center gap-3">
+              <span className="text-xs text-gray-500 font-medium">
+                총 <strong className="text-brand-primary">{projectsData.length}개</strong> 프로젝트
+              </span>
+              <button
+                onClick={() => {
+                  setLoading(true);
+                  setTimeout(() => setLoading(false), 800);
+                }}
+                className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors shadow-xs"
+              >
+                🔄 스켈레톤 UI 테스트
+              </button>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            {loading ? (
+              Array.from({ length: 5 }).map((_, index) => (
+                <SkeletonCard key={index} />
+              ))
+            ) : (
+              projects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onSelect={(p) => setSelectedProject(p)}
+                />
+              ))
+            )}
+          </div>
+
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        </section>
+      );
+    }
+
+    function Hobby() {
+      const hobbies = [
+        {
+          id: 1,
+          title: "펠트 & 친환경 DIY 교구 제작",
+          tag: "손재주 & 창의력",
+          icon: "✂️",
+          desc: "아이들의 발달 단계에 맞춘 촉감 주머니, 손인형, 찍찍이 융판 교구를 직접 만듭니다. 유아들의 오감 자극과 흥미 유발에 큰 도움이 됩니다.",
+          highlight: "누리과정 맞춤형 교구 30여 종 자체 제작"
+        },
+        {
+          id: 2,
+          title: "동화 구연 및 아동 그림책 큐레이션",
+          tag: "음성 표현 & 스토리텔링",
+          icon: "📚",
+          desc: "목소리 톤과 생생한 표정 연기를 연구하여 이야기 나누기 시간에 아이들이 몰입할 수 있도록 지도합니다. 매달 주제별 추천 그림책 코너를 운영합니다.",
+          highlight: "유아 집중도 향상 및 언어 어휘력 확장"
+        },
+        {
+          id: 3,
+          title: "반려식물 가꾸기 & 실내 원예",
+          tag: "생명 존중 & 인내심",
+          icon: "🌱",
+          desc: "작은 씨앗이 싹을 틔우고 자라는 과정을 돌보며 배운 따뜻한 인내심으로 아이들을 대합니다. 원내 자연 관찰 코너를 생동감 있게 가꿉니다.",
+          highlight: "생태 놀이 및 사계절 관찰일기와 연계"
+        }
+      ];
+
+      return (
+        <section id="hobby" className="py-24 px-6 max-w-7xl mx-auto border-t border-brand-sand/20">
+          <div className="mb-12">
+            <span className="text-xs font-bold tracking-widest text-brand-sage uppercase">
+              03. Personal Interests & Special Skills
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black text-brand-dark mt-2 tracking-tight">
+              아이들과 만나는 또 다른 힘, 취미 & 특기
+            </h2>
+            <p className="text-gray-600 mt-3 text-base md:text-lg max-w-2xl">
+              교사의 일상과 취미는 수업의 질과 직결됩니다. 유아 교육 현장에서 긍정적인 시너지를 내는 관심사입니다.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {hobbies.map((h) => (
+              <div
+                key={h.id}
+                className="bg-white rounded-3xl p-8 border border-brand-sage/10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group hover:-translate-y-1"
+              >
+                <div>
+                  <div className="w-14 h-14 rounded-2xl bg-brand-light text-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    {h.icon}
+                  </div>
+                  <span className="text-xs font-bold text-brand-sage bg-brand-light/70 px-2.5 py-1 rounded-md">
+                    {h.tag}
+                  </span>
+                  <h3 className="text-xl font-bold text-brand-dark mt-3 mb-2">{h.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{h.desc}</p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs font-semibold text-brand-primary">
+                  <span>🌟</span>
+                  <span>{h.highlight}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    function Sitemap() {
+      return (
+        <footer id="sitemap" className="bg-brand-dark text-white pt-20 pb-12 px-6">
+          <div className="max-w-7xl mx-auto">
+            {/* Top Download Banner */}
+            <div className="bg-gradient-to-r from-brand-primary to-[#2C4F40] rounded-3xl p-8 sm:p-12 mb-16 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-white/10">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest text-emerald-300">
+                  Download Full Resume & Portfolio
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+                  이수경 교사의 상세 이력서가 필요하신가요?
+                </h3>
+                <p className="text-emerald-100/80 text-sm sm:text-base mt-2 max-w-xl">
+                  보육교사 1급 및 원장 자격 내역, 상세 실무 경력과 연간 계획안 포트폴리오를 한눈에 보실 수 있는 PDF 파일입니다.
+                </p>
+              </div>
+
+              <a
+                href="./public/assets/resume_leesoogyeong.pdf"
+                download="이수경_유치원교사_이력서.pdf"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white text-brand-dark font-extrabold text-base hover:bg-emerald-50 transition-all shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 whitespace-nowrap"
+              >
+                <span>이력서 PDF 다운로드</span>
+                <span className="text-xl">📥</span>
+              </a>
+            </div>
+
+            {/* Sitemap Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+              <div className="md:col-span-1 space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm">
+                    이
+                  </span>
+                  <span className="text-xl font-bold tracking-tight">이수경</span>
+                </div>
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                  아이들의 눈높이에서 공감하고, 원장 자격의 전문적인 학급 경영 역량으로 함께하는 유치원 교사입니다.
+                </p>
+                <div className="text-xs text-emerald-400 font-medium">
+                  1997.03.28 | 보육교사 1급 | 어린이집 원장 자격
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Navigation</h4>
+                <ul className="space-y-2 text-sm text-gray-300">
+                  <li><a href="#intro" className="hover:text-emerald-400 transition-colors">01. Intro (3D 로봇 인트로)</a></li>
+                  <li><a href="#profile" className="hover:text-emerald-400 transition-colors">02. Profile (소개 · 자격증 · 스킬)</a></li>
+                  <li><a href="#project" className="hover:text-emerald-400 transition-colors">03. Project (5대 교육 프로젝트)</a></li>
+                  <li><a href="#hobby" className="hover:text-emerald-400 transition-colors">04. Hobby (취미 및 교사 특기)</a></li>
+                  <li><a href="#sitemap" className="hover:text-emerald-400 transition-colors">05. Sitemap & Resume</a></li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Core Qualifications</h4>
+                <ul className="space-y-2 text-sm text-gray-300">
+                  <li className="flex items-center gap-2"><span className="text-emerald-400">✔</span> 보육교사 1급 자격증</li>
+                  <li className="flex items-center gap-2"><span className="text-emerald-400">✔</span> 어린이집 원장 자격증</li>
+                  <li className="flex items-center gap-2"><span className="text-emerald-400">✔</span> 한글 (HWP) 실무 최상 (98%)</li>
+                  <li className="flex items-center gap-2"><span className="text-emerald-400">✔</span> 파워포인트 (PPT) 실무 상 (95%)</li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Contact</h4>
+                <div className="space-y-1 text-sm text-gray-300">
+                  <p>📧 이메일: <span className="text-emerald-300">soogyeong.lee@example.com</span></p>
+                  <p>📍 희망 근무지: 서울 및 수도권</p>
+                  <p>💼 입사 가능 시기: 즉시 협의 가능</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+              <p>© 2026 Lee Soo Gyeong. All rights reserved.</p>
+              <p className="text-gray-400">Designed for Kindergarten & Childcare Teacher Hiring.</p>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    function App() {
+      return (
+        <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-gray-800">
+          <Header />
+          <main className="flex-grow">
+            <Intro />
+            <Profile />
+            <ProjectList />
+            <Hobby />
+          </main>
+          <Sitemap />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
